@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_application_1/screens/tela1.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyBg1fI_AzMG7YT6fXQn80HOi_Yl-0LWLaY",
+      appId: "1:657281629814:android:348bea880ef26f41516957",
+      messagingSenderId: "657281629814",
+      projectId: "posgrad-xp-arq-rodrigo-martins",
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -28,7 +39,9 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 134, 25, 223)),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 134, 25, 223),
+        ),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -108,6 +121,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignInPage2()),
+                );
+              },
+              label: Text("Navegar tela 1"),
+              icon: Icon(Icons.arrow_forward_ios),
             ),
           ],
         ),
